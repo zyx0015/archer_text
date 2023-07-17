@@ -179,32 +179,15 @@ output_table=doc_to_df(docx_text_number,docx_text_no_num)
 final_output_table=description_extract(output_table)
 
 # 显示数据框
-st.dataframe(final_output_table)
+
 
 # 交互式修改数据框
 with st.form(key="edit_form"):
     # 创建表单组件，用于用户输入修改后的数据
     # 这里使用了五个输入框作为示例，你可以根据实际需要进行修改
-    col1, col2, col3, col4, col5 = st.columns(5)
-    modified_col1 = col1.text_input("Modified Column 1", final_output_table["Column 1"])
-    modified_col2 = col2.text_input("Modified Column 2", final_output_table["Column 2"])
-    modified_col3 = col3.text_input("Modified Column 3", final_output_table["Column 3"])
-    modified_col4 = col4.text_input("Modified Column 4", final_output_table["Column 4"])
-    modified_col5 = col5.text_input("Modified Column 5", final_output_table["Column 5"])
-    
-    # 提交按钮
+    st.dataframe(final_output_table)
     submitted = st.form_submit_button("submit")
-    # 如果用户提交了修改
-    if submitted:
-        # 更新数据框
-        final_output_table["Column 1"] = modified_col1
-        final_output_table["Column 2"] = modified_col2
-        final_output_table["Column 3"] = modified_col3
-        final_output_table["Column 4"] = modified_col4
-        final_output_table["Column 5"] = modified_col5
-        
-        # 保存修改后的数据框为 CSV 文件
-        final_output_table.to_csv("modified_data.csv", index=False)
+    final_output_table.to_csv("modified_data.csv", index=False)
     
     # 提示用户下载修改后的 CSV 文件
     st.download_button("Download Modified CSV", "modified_data.csv", "Click here to download the modified CSV file.")
