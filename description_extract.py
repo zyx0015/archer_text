@@ -182,14 +182,10 @@ final_output_table=description_extract(output_table)
 
 
 # 交互式修改数据框
-with st.form(key="edit_form"):
-    editable_data=st.dataframe(final_output_table)
-    submitted = st.form_submit_button('Submit')
-
-if submitted:
-    st.download_button(
+edited_df = st.experimental_data_editor(final_output_table,num_rows="dynamic")
+st.download_button(
           label='Download output.zip',
-          data=editable_data.to_csv(index=False),
+          data=edited_df.to_csv(index=False),
           file_name='output.csv',
           mime='text/csv'
       )
