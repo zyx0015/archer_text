@@ -183,7 +183,7 @@ final_output_table=description_extract(output_table)
 
 # 交互式修改数据框
 with st.form(key="edit_form"):
-    editable_data=st.table(final_output_table)
+    editable_data=st.dataframe(final_output_table)
     submitted = st.form_submit_button('Submit')
 
 if submitted:
