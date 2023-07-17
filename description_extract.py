@@ -179,11 +179,14 @@ output_table=doc_to_df(docx_text_number,docx_text_no_num)
 final_output_table=description_extract(output_table)
 
 #预览
-st.table(final_output_table)
+editable_data = st.table(final_output_table)
+
+
+
 # 在应用中显示下载按钮
 st.download_button(
           label='Download output.csv',
-          data=final_output_table.to_csv(index=False),
+          data=editable_data.to_csv(index=False),
           file_name='output.csv',
           mime='text/csv'
       )
