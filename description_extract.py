@@ -170,7 +170,10 @@ def description_extract(output_table,label_format="（，）,"):
 
 
 #执行操作
-docx_text_number,docx_text_no_num=read_report("test图.docx")
+st.title("Extract description from your archaeological reports")
+
+file = st.file_uploader("import your pdf file")
+docx_text_number,docx_text_no_num=read_report(file)
 output_table=doc_to_df(docx_text_number,docx_text_no_num)
 final_output_table=description_extract(output_table)
 
