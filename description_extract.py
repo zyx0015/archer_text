@@ -182,7 +182,7 @@ final_output_table=description_extract(output_table)
 
 
 # 交互式修改数据框
-edited_df = st.experimental_data_editor(final_output_table,num_rows="dynamic")
+edited_df = st.experimental_data_editor(final_output_table,use_container_width=T,num_rows="dynamic")
 st.download_button(
           label='Download output.csv',
           data=edited_df.to_csv(index=False),
