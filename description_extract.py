@@ -165,7 +165,8 @@ def description_extract(output_table,label_format="（，）,"):
                   result_des.append(None)
           else:
               result_des.append(None)
-  output_table["description"]=result_des
+  result=[lst[0] if lst else None for lst in result_des]
+  output_table["description"]=result
   return output_table
 
 
@@ -177,9 +178,11 @@ docx_text_number,docx_text_no_num=read_report(file)
 output_table=doc_to_df(docx_text_number,docx_text_no_num)
 final_output_table=description_extract(output_table)
 
+#预览
+st.table(final_output_table)
 # 在应用中显示下载按钮
 st.download_button(
-          label='Download output.zip',
+          label='Download output.csv',
           data=final_output_table.to_csv(index=False),
           file_name='output.csv',
           mime='text/csv'
