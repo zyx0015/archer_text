@@ -193,19 +193,18 @@ with st.form(key="edit_form"):
     modified_col5 = col5.text_input("Modified Column 5", final_output_table["Column 5"])
     
     # 提交按钮
-    submitted = st.form_submit_button("Save Changes")
-    
-# 如果用户提交了修改
-if submitted:
-    # 更新数据框
-    final_output_table["Column 1"] = modified_col1
-    final_output_table["Column 2"] = modified_col2
-    final_output_table["Column 3"] = modified_col3
-    final_output_table["Column 4"] = modified_col4
-    final_output_table["Column 5"] = modified_col5
-    
-    # 保存修改后的数据框为 CSV 文件
-    final_output_table.to_csv("modified_data.csv", index=False)
+    submitted = st.form_submit_button("submit")
+    # 如果用户提交了修改
+    if submitted:
+        # 更新数据框
+        final_output_table["Column 1"] = modified_col1
+        final_output_table["Column 2"] = modified_col2
+        final_output_table["Column 3"] = modified_col3
+        final_output_table["Column 4"] = modified_col4
+        final_output_table["Column 5"] = modified_col5
+        
+        # 保存修改后的数据框为 CSV 文件
+        final_output_table.to_csv("modified_data.csv", index=False)
     
     # 提示用户下载修改后的 CSV 文件
     st.download_button("Download Modified CSV", "modified_data.csv", "Click here to download the modified CSV file.")
